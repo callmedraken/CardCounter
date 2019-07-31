@@ -1,6 +1,7 @@
 ### John Hsiao 7/30/2019
 ### Card counter program for playing blackjack
 
+
 def cardCounting(deckCount):
     switcher = {
         1: -1,
@@ -23,6 +24,7 @@ def cardCounting(deckCount):
     }
     runningCount = 0
     trueCount = 0
+
 
 def main():
     print("Welcome to the Card Counter Program")
