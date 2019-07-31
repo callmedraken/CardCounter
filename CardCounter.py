@@ -23,7 +23,6 @@ def cardCounting(deckCount):
     }
     runningCount = 0
     trueCount = 0
-    
 
 def main():
     print("Welcome to the Card Counter Program")
