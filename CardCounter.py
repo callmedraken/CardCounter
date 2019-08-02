@@ -40,6 +40,7 @@ def cardCounting(deckCount):
         totalCards -= 1
         remainingDecks = math.floor(totalCards / 52)
         trueCount = runningCount / remainingDecks
+        print("True count: ", trueCount, ".  Running count: ", runningCount)
 
 
 
