@@ -38,16 +38,16 @@ def cardCounting(deckCount):
         otherCards = str(input("Other cards: "))
         if otherCards == "quit":
             sys.exit(0)
-        tempCount, tempCards = parseCards(otherCards, switcher)
+        tempCount, tempCards, otherCards = parseCards(otherCards, switcher)
         runningCount += tempCount
         totalCardsLeft -= tempCards
 
 
         ### What is the dealers hand?
-        dealerHand = str(input("Dealer hand: "))
-        if dealerHand == "quit":
+        dealerUp = str(input("Dealer Upcard: "))
+        if dealerUp == "quit":
             sys.exit(0)
-        tempCount, tempCards = parseCards(dealerHand, switcher)
+        tempCount, tempCards, dealerUp = parseCards(dealerUp, switcher)
         runningCount += tempCount
         totalCardsLeft -= tempCards
 
@@ -56,35 +56,45 @@ def cardCounting(deckCount):
         yourHand = str(input("Your initial hand: "))
         if yourHand == "quit":
             sys.exit(0)
-        tempCount, tempCards = parseCards(yourHand, switcher)
+        tempCount, tempCards, yourHand = parseCards(yourHand, switcher)
         runningCount += tempCount
         totalCardsLeft -= tempCards
 
         decksLeft = math.floor(totalCardsLeft/52)
         trueCount = runningCount / decksLeft
         print("True Count :", trueCount, "Running count:", runningCount)
+        if deckCount > 2:
+            illustrious18(dealerUp, yourHand)
 
         round+=1
 
 
+def illustrious18(dealerUp, yourHand):
+    cardTally = 0
+    print(yourHand)
+    return
+
 
 def parseCards(cards, dict):
+    cardList = [x.strip() for x in cards.split(',')]
+    print(cardList)
     count = 0
     cardCount = 0
-    for card in cards:
+    for card in cardList:
         val = dict.get(card)
         count += val
         cardCount += 1
-    return count, cardCount
+    return count, cardCount, cardList
 
 
 def main():
     print("Welcome to the Card Counter Program")
+    print("Separate cards by a comma")
     print("Input \"quit\" at any time to exit the program")
-    deckCount = int(input("Input the number of decks being used: "))
+    deckCount = input("Input the number of decks being used: ")
     if deckCount == "quit":
         sys.exit(0)
-    cardCounting(deckCount)
+    cardCounting(int(deckCount))
     print("Thanks for playing!")
 
 if __name__ == '__main__':
