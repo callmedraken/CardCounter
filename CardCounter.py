@@ -30,10 +30,7 @@ def cardCounting(deckCount):
     }
     runningCount = 0
     totalCardsLeft = deckCount * 52
-    cardsPlayed = 0
-    myHand = ""
-    dealerHand = ""
-    otherCards = ""
+    decksLeft = deckCount
     round = 0
     while True:
         print("Round #: ", round)
@@ -41,14 +38,34 @@ def cardCounting(deckCount):
         otherCards = str(input("Other cards: "))
         if otherCards == "quit":
             sys.exit(0)
-        runningCount, cardsPlayed = parseCards(otherCards, switcher)
-        totalCardsLeft -= cardsPlayed
-        remainingDecks = math.floor(totalCardsLeft / 52)
-        trueCount = runningCount / remainingDecks
+        tempCount, tempCards = parseCards(otherCards, switcher)
+        runningCount += tempCount
+        totalCardsLeft -= tempCards
 
-        ### What is your hand?
 
         ### What is the dealers hand?
+        dealerHand = str(input("Dealer hand: "))
+        if dealerHand == "quit":
+            sys.exit(0)
+        tempCount, tempCards = parseCards(dealerHand, switcher)
+        runningCount += tempCount
+        totalCardsLeft -= tempCards
+
+
+        ### What is your hand?
+        yourHand = str(input("Your initial hand: "))
+        if yourHand == "quit":
+            sys.exit(0)
+        tempCount, tempCards = parseCards(yourHand, switcher)
+        runningCount += tempCount
+        totalCardsLeft -= tempCards
+
+        decksLeft = math.floor(totalCardsLeft/52)
+        trueCount = runningCount / decksLeft
+        print("True Count :", trueCount, "Running count:", runningCount)
+
+        round+=1
+
 
 
 def parseCards(cards, dict):
@@ -59,7 +76,6 @@ def parseCards(cards, dict):
         count += val
         cardCount += 1
     return count, cardCount
-
 
 
 def main():
