@@ -29,18 +29,36 @@ def cardCounting(deckCount):
         "k": -1
     }
     runningCount = 0
-    totalCards = deckCount * 52
-
+    totalCardsLeft = deckCount * 52
+    cardsPlayed = 0
+    myHand = ""
+    dealerHand = ""
+    otherCards = ""
+    round = 0
     while True:
-        inp = str(input("Dealt card: "))
-        card = switcher.get(inp)
-        if inp == "quit":
+        print("Round #: ", round)
+        ### Initial deal of everyone else's cards
+        otherCards = str(input("Other cards: "))
+        if otherCards == "quit":
             sys.exit(0)
-        runningCount += card
-        totalCards -= 1
-        remainingDecks = math.floor(totalCards / 52)
+        runningCount, cardsPlayed = parseCards(otherCards, switcher)
+        totalCardsLeft -= cardsPlayed
+        remainingDecks = math.floor(totalCardsLeft / 52)
         trueCount = runningCount / remainingDecks
-        print("True count: ", trueCount, ".  Running count: ", runningCount)
+
+        ### What is your hand?
+
+        ### What is the dealers hand?
+
+
+def parseCards(cards, dict):
+    count = 0
+    cardCount = 0
+    for card in cards:
+        val = dict.get(card)
+        count += val
+        cardCount += 1
+    return count, cardCount
 
 
 
