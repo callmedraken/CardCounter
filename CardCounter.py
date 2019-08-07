@@ -31,7 +31,7 @@ def cardCounting(deckCount):
     runningCount = 0
     totalCardsLeft = deckCount * 52
     decksLeft = deckCount
-    round = 0
+    round = 1
     while True:
         print("Round #: ", round)
         ### Initial deal of everyone else's cards
@@ -92,13 +92,13 @@ def main():
     print("Separate cards by a comma")
     print("Input \"quit\" at any time to exit the program")
     deckCount = None
-    while deckCount not in ("1", "2", "3", "4", "5", "6", "quit"):
+    allowedInputs = ["1", "2", "3", "4", "5", "6", "quit"]
+    while deckCount not in allowedInputs:
         try:
             deckCount = input("How many decks are being used? ")
-        except ValueError:
-            pass
-    if deckCount == "quit":
-        sys.exit(0)
+        finally:
+            if deckCount == "quit":
+                sys.exit(0)
     cardCounting(int(deckCount))
     print("Thanks for playing!")
 
