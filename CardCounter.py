@@ -93,12 +93,24 @@ def main():
     print("Input \"quit\" at any time to exit the program")
     deckCount = None
     allowedInputs = ["1", "2", "3", "4", "5", "6", "quit"]
-    while deckCount not in allowedInputs:
-        try:
+    # while deckCount not in allowedInputs:
+    #     try:
+    #         deckCount = input("How many decks are being used? ")
+    #     finally:
+    #         if deckCount == "quit":
+    #             sys.exit(0)
+    #     print("Invalid value, try again (1, 2, 3, 4, 5, 6, quit)")
+    deckCount = input("How many decks are being used? ")
+    while True:
+        if deckCount not in allowedInputs:
+            print("Invalid value, try again (1, 2, 3, 4, 5, 6, quit)")
             deckCount = input("How many decks are being used? ")
-        finally:
-            if deckCount == "quit":
-                sys.exit(0)
+        elif deckCount == "quit":
+            sys.exit(0)
+        else:
+            break
+
+    print(deckCount)
     cardCounting(int(deckCount))
     print("Thanks for playing!")
 
