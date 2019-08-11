@@ -91,7 +91,6 @@ def main():
     print("Welcome to the Card Counter Program")
     print("Separate cards by a comma")
     print("Input \"quit\" at any time to exit the program")
-    deckCount = None
     allowedInputs = ["1", "2", "3", "4", "5", "6", "quit"]
     # while deckCount not in allowedInputs:
     #     try:
@@ -106,13 +105,12 @@ def main():
             print("Invalid value, try again (1, 2, 3, 4, 5, 6, quit)")
             deckCount = input("How many decks are being used? ")
         elif deckCount == "quit":
+            print("Goodbye")
             sys.exit(0)
         else:
             break
-
-    print(deckCount)
     cardCounting(int(deckCount))
-    print("Thanks for playing!")
+
 
 if __name__ == '__main__':
     main()
