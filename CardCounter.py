@@ -75,6 +75,14 @@ def illustrious18(dealerUp, yourHand):
     return
 
 
+def singleDeck(dealerUp, yourHand):
+    return
+
+
+def doubleDeck(dealerUp, yourHand):
+    return
+
+
 def parseCards(cards, dict):
     cardList = [x.strip() for x in cards.split(',')]
     print(cardList)
